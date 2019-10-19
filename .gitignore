@@ -3,5 +3,6 @@
 .RData
 .Ruserdata
 
+Data
 ./Data/edges.tsv
 ./Data/nodes.tsv

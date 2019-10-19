@@ -2,6 +2,15 @@
 
 General Information : http://biovis.net/2019/biovisChallenges_vis/
 
+## Team Members
+|Member|Github|
+|------|-------|
+|Ana Crisan | amcrisan|
+| Etienne Meunier | Etienne-Meunier |
+| Federico Arribas | Svendsen |
+| Javier Castillo-Arnemann | yavyx|
+
+
 ## Project Description
 
 RefSeq is a massive online repository of genome sequencing data, but its size and complexity makes it prohibitive to explore such a large dataset.  A [prior publication](https://doi.org/10.1186/s13059-016-0997-x) has developed method to quickly compute the distances between genomes and has applied their method to RefSeq. The resulting distance matrix between RefSeq genomes results in a graph, that can be visualized to show the structure of RefSeq and the connections between cluster of species. However, the resulting RefSeq graph visualization is still massive and it remains difficult to explore these data.
@@ -20,10 +29,21 @@ https://biovis.s3.amazonaws.com/biovis_contest_2019.zip
 Current working dataset is on Orca : edges_undirected_annoted_v2.objz (Python Pickle Object)
 
 Graph Stats:
-
 Nodes : 127,465
 Edges : 235,545,792
 Clusters: 6,279 
+
+## Dependencies
+Python v 3.7
+Packages:
+- dash
+- igraph
+- pandas
+- networkx
+- mash
+
+## Current Status
+We continue to hack away at the giant graph, attempting to tame its insane structure.
 
 ## Progress
 
