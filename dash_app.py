@@ -8,9 +8,11 @@ import dash_table
 from dash.dependencies import Input, Output
 import networkx as nx
 import pandas as pd
+import numpy as np
 
 import graph_converter as gc
 
+path = "../graphs/smaller_subgraph.graphml"
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 navbar = dbc.NavbarSimple(
@@ -48,7 +50,7 @@ cluster_buttons = dbc.FormGroup(
     ]
 )
 
-graph = nx.read_graphml("smaller_subgraph.graphml")
+graph = nx.read_graphml(path)
 subgraph_nodes = ['n{}'.format(n) for n in range(0, 100)]
 subgraph = graph.subgraph(subgraph_nodes)
 
@@ -57,32 +59,39 @@ subgraph = graph.subgraph(subgraph_nodes)
 #    json_str =
 
 
-def assign_clusters(subgraph):
+def assign_clusters(subgraph, n_subcluser):
     for node in subgraph.nodes():
-        node_n = int(list(node)[1])
-        if node_n < 3:
-            subgraph.nodes[node]['subcluster'] = 1
-        elif node_n < 5:
-            subgraph.nodes[node]['subcluster'] = 2
-        else:
-            subgraph.nodes[node]['subcluster'] = 3
+        subgraph.nodes[node]['subcluster'] = np.random.randint(n_subcluser)
     return subgraph
 
 
 def make_clustered_network(graph):
     """Takes a network of genomes and returns a network of clusters with genomes as node attributes."""
-    g = assign_clusters(graph)
+    g = assign_clusters(graph, 10)
     cluster_dict = gc.make_cluster_dict(g)
     cluster_network = gc.make_cluster_network(cluster_dict)
     return cluster_network
 
+def add_edges(graph, n_max_connections = 5) :
+    """
+    Add edges to the graph
+    :param graph:
+    :return:
+    """
+    for i in range(1, graph.number_of_nodes()):
+        for n in range(1, n_max_connections):
+            ni = np.random.randint(1, graph.number_of_nodes())
+            if i != ni : cluster_graph.add_edge(i,ni)
+    return graph
+
 cluster_graph = make_clustered_network(subgraph)
+cluster_graph = add_edges(cluster_graph)
 cyto_elements = gc.make_cyto_elements(cluster_graph)
 
 graph = cyto.Cytoscape(
     id='network',
     layout={'name': 'cose'},
-    style={'width': '100%', 'height': '400px'},
+    style={'width': '100%', 'height': '400px', 'line-color':'red'},
     elements=cyto_elements
 )
 
