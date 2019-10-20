@@ -28,30 +28,41 @@ https://biovis.s3.amazonaws.com/biovis_contest_2019.zip
 
 Current working dataset is on Orca : edges_undirected_annoted_v3.objz (Python Pickle Object)
 
-Graph Stats:
+**Graph Stats:**
+
 Nodes : 127,465
+
 Edges : 235,545,792
+
 Clusters: 6,279 
 
-This graph also contains:
-4 Kingdoms  (Eukaryota, Bacteria, Archaea,  Viruses)
-40 Phylum
-1,763 Genus
+*This graph also contains:*
 
-Cluster stats:
+- 4 Kingdoms  (Eukaryota, Bacteria, Archaea,  Viruses)
+
+- 40 Phyla
+
+- 1,763 Genuses
+
+**Cluster stats:**
 
 *Nodes per cluster*
-Min size: 2, Max size : 12,348
-Median size : 3, Average Size : 24
+
+- Min size: 2, Max size : 12,348
+
+- Median size : 3, Average Size : 24
 
 *Genus per cluster*
-Min size: 2, Max size : 21
-Median size : 1, Average Size : 1
+
+- Min size: 2, Max size : 21
+
+- Median size : 1, Average Size : 1
 
 *Phyla per cluster*
-Min size: 1, Max size : 5
-Median size : 1, Average Size : 1
 
+- Min size: 1, Max size : 5
+
+- Median size : 1, Average Size : 1
 
 
 ## Dependencies
@@ -66,7 +77,7 @@ Packages:
 
 Requires about 70 GIGS of RAM to load the dataset into RAM.
 
-## Current Status
+## Analysis Code
 We deliver a set of scripts to load, annotate, and analyze this massive graph. We also contribute a preliminary user interface for getting an overview of the graph, browsing its contents, and filtering desired nodes. 
 
 ### Graph Analysis Scripts
@@ -84,6 +95,21 @@ A series of python scripts. Here is an overview of the files:
 We also produce a preliminary dashboard using Dash. 
 
 - **dash_app.py** : preliminary dashboard application
+
+
+### Results
+
+- Biological stakeholder usage scenario and tasks for such a big network 
+
+- Exploring how to visualization and represent a massive and densely connected graph
+
+- Identify cluster structure within the graph. 
+
+- Derive additional information for the graph : edges weights of genomic similarity (not just 0 or 1) and taxonomic information
+
+- Derived summary statistics for graph overall and also its clusters.
+
+- Attempt to identify and display biologically relevant parts of the graph
 
 
 ## Ongoing Work
