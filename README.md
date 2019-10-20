@@ -26,12 +26,33 @@ This dataset is too large to load into the repo, so please have a local copy on 
 https://biovis.s3.amazonaws.com/biovis_contest_2019.zip
 
 
-Current working dataset is on Orca : edges_undirected_annoted_v2.objz (Python Pickle Object)
+Current working dataset is on Orca : edges_undirected_annoted_v3.objz (Python Pickle Object)
 
 Graph Stats:
 Nodes : 127,465
 Edges : 235,545,792
 Clusters: 6,279 
+
+This graph also contains:
+4 Kingdoms  (Eukaryota, Bacteria, Archaea,  Viruses)
+40 Phylum
+1,763 Genus
+
+Cluster stats:
+
+*Nodes per cluster*
+Min size: 2, Max size : 12,348
+Median size : 3, Average Size : 24
+
+*Genus per cluster*
+Min size: 2, Max size : 21
+Median size : 1, Average Size : 1
+
+*Phyla per cluster*
+Min size: 1, Max size : 5
+Median size : 1, Average Size : 1
+
+
 
 ## Dependencies
 Python v 3.7
@@ -41,29 +62,33 @@ Packages:
 - pandas
 - networkx
 - mash
+- collections
+
+Requires about 70 GIGS of RAM to load the dataset into RAM.
 
 ## Current Status
-We continue to hack away at the giant graph, attempting to tame its insane structure.
+We deliver a set of scripts to load, annotate, and analyze this massive graph. We also contribute a preliminary user interface for getting an overview of the graph, browsing its contents, and filtering desired nodes. 
 
-## Progress
+### Graph Analysis Scripts
+A series of python scripts. Here is an overview of the files:
 
-### Day 1
+- **Graph_Preprocessing.py** : loading and annotation graph 
 
-1) Identified two levels of the interface : Overview and Sequence Comparison
+- **graph_converter.py** : set of scripts to convert between igraph, gml, and cytospace
 
-Overview : See the whole network with summarized graph topology
-Tasks: Overview, Browse, Filter
+- **database_analysis.py** : analysis of the MASH refseq database, in order to extract weights
 
-Sequence Comparion : Identify linkages and paths between organisms
-Tasks : Overview (subgraph), Path Identification, Comparison
+- **add_weights_to_graph.py** : add weights to the graph edges (this is an example on a small subgraph)
 
-2) Decided upon python and graphing/analysis/vis libraries
+### Dashboard
+We also produce a preliminary dashboard using Dash. 
 
-3) Created a final graph dataset with node annotations
+- **dash_app.py** : preliminary dashboard application
 
-TO DO:
-- Continue to refine the usage scenario
-- Load the data and continue implementing!
+
+## Ongoing Work
+This set of code sets can be used to tackle this massive graph and we contribute additional information to help others get going with their graph analysis and to with this graph in particular.
+
 
 
 
