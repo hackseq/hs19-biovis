@@ -118,8 +118,10 @@ app.layout = dbc.Container(
 
 def make_genome_table(network, node):
     """Takes a network node and returns a table with its genomes."""
+    print(network.nodes[node])
     genomes = network.nodes[node]['genomes'].split(', ')
-    table_df = pd.DatafFrame(genomes)
+    table_df = pd.DataFrame(genomes)
+    table_df.rename(columns={table_df.columns[0]: "Genome"}, inplace=True)
     data_table = dash_table.DataTable(
         data=table_df.to_dict('records'),
         columns=[{'name': i, 'id': i} for i in table_df.columns]
@@ -131,11 +133,14 @@ def make_genome_table(network, node):
     Output('node_genomes', 'children'),
     [Input('network', 'tapNodeData')])
 def get_node_genomes(node_data):
-    graph = nx.read_graphml("smaller_subgraph.graphml")
-    subgraph_nodes = ['n{}'.format(n) for n in range(0, 100)]
-    subgraph = graph.subgraph(subgraph_nodes)
-    table = make_genome_table(subgraph, node_data['id'])
-    return table
+    if node_data:
+        print(node_data['id'])
+        graph = nx.read_graphml("smaller_subgraph.graphml")
+        subgraph_nodes = ['n{}'.format(n) for n in range(0, 100)]
+        subgraph = graph.subgraph(subgraph_nodes)
+        cluster_graph = make_clustered_network(subgraph)
+        table = make_genome_table(cluster_graph, int(node_data['id']))
+        return table
 
 if __name__ == "__main__":
     app.run_server(debug=True)
