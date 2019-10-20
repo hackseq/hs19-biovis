@@ -135,9 +135,6 @@ def make_genome_table(network, node):
 def get_node_genomes(node_data):
     if node_data:
         print(node_data['id'])
-        graph = nx.read_graphml("smaller_subgraph.graphml")
-        subgraph_nodes = ['n{}'.format(n) for n in range(0, 100)]
-        subgraph = graph.subgraph(subgraph_nodes)
         cluster_graph = make_clustered_network(subgraph)
         table = make_genome_table(cluster_graph, int(node_data['id']))
         return table
