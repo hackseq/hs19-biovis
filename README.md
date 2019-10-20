@@ -97,9 +97,12 @@ We also produce a preliminary dashboard using Dash.
 - **dash_app.py** : preliminary dashboard application
 
 
-### Results
+## Results
 
-- Biological stakeholder usage scenario and tasks for such a big network 
+- Biological stakeholder usage scenario and tasks for such a big network :
+    - *Usage Scenario* : A biologist wishing the explore high level structure of large but unknown genomic network(in this case RefSeq), potentially seeking interesting and unexpected connects to probe in detail.
+    - Highlight level network view. Tasks: Overview, browse, filter
+    - Low level node view. Task: Filter, Comparison, 
 
 - Exploring how to visualization and represent a massive and densely connected graph
 
