@@ -6,3 +6,5 @@
 Data
 ./Data/edges.tsv
 ./Data/nodes.tsv
+Ana*
+.ipynb*
